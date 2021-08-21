@@ -12,3 +12,4 @@ public class CourseController {
         this.courseService = courseService;
     }
 }
+
