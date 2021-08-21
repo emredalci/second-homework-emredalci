@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/courses")
 public class CourseController {
 
     CourseService courseService;
@@ -21,27 +21,27 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @GetMapping("/courses")
+    @GetMapping("/findAll")
     public ResponseEntity<List<Course>> findAll(){
         return new ResponseEntity<>(courseService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/courses")
+    @PostMapping("/saveCourse")
     public Course saveCourse(@RequestBody Course course){
         return courseService.save(course);
     }
 
-    @GetMapping("/courses/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Course> findCourseById(@PathVariable int id){
         return new ResponseEntity<>(courseService.findById(id),HttpStatus.OK);
     }
 
-    @PutMapping("/courses")
+    @PutMapping("/updateCourse")
     public Course updateCourse(@RequestBody Course course){
         return courseService.update(course);
     }
 
-    @DeleteMapping("/courses/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCourseById(@PathVariable int id){
         courseService.deleteById(id);
         return "Course is deleted";
