@@ -1,5 +1,7 @@
 package dev.patika.gittigidiyorhomework02.model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "instructors")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = PermanentInstructor.class, name = "PermanentInstructor"),
+        @JsonSubTypes.Type(value = VisitingResearcher.class, name = "VisitingResearcher")
+})
 public class Instructor {
 
     //instance variables
@@ -24,6 +35,7 @@ public class Instructor {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "instructor")
     private List<Course> courses = new ArrayList<>();
 

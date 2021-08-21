@@ -5,6 +5,7 @@ import dev.patika.gittigidiyorhomework02.model.Student;
 import dev.patika.gittigidiyorhomework02.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class StudentController {
         return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/saveStudent")
+    @PostMapping(value = "/saveStudent",produces = {MediaType.APPLICATION_JSON_VALUE})
     public Student saveStudent(@RequestBody Student student){
         return studentService.save(student);
     }

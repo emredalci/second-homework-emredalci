@@ -1,6 +1,8 @@
 package dev.patika.gittigidiyorhomework02.model;
 
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "courses")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Course {
 
     //instance variables
@@ -28,9 +31,11 @@ public class Course {
     @Column(name = "credit_score")
     private String creditScore;
 
+
     @ManyToMany(mappedBy = "courses")
     private List<Student> students = new ArrayList<>();
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "instructor_id",nullable = false)
     private Instructor instructor;

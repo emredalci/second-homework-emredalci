@@ -29,6 +29,13 @@ public class InstructorController {
         return new ResponseEntity<>(instructorService.findAll(), HttpStatus.OK);
     }
 
+    @PostMapping("/saveInstructor")
+    public Instructor saveInstructor(@RequestBody Instructor instructor){
+        return instructorService.save(instructor);
+    }
+
+
+    /*
     @PostMapping("/savePermanentInstructor")
     public PermanentInstructor savePermanentInstructor(@RequestBody PermanentInstructor permanentInstructor){
         return (PermanentInstructor) instructorService.save(permanentInstructor);
@@ -38,6 +45,8 @@ public class InstructorController {
     public VisitingResearcher saveVisitingResearcher(@RequestBody VisitingResearcher visitingResearcher){
         return (VisitingResearcher) instructorService.save(visitingResearcher);
     }
+
+    */
 
     @GetMapping("/{id}")
     public ResponseEntity<Instructor> findInstructorById(@PathVariable int id){
