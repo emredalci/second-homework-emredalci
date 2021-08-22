@@ -28,13 +28,13 @@ public class InstructorController {
     public ResponseEntity<List<Instructor>> findAll(){
         return new ResponseEntity<>(instructorService.findAll(), HttpStatus.OK);
     }
-
+    //One end point for instructor subclasses
     @PostMapping("/saveInstructor")
     public Instructor saveInstructor(@RequestBody Instructor instructor){
         return instructorService.save(instructor);
     }
 
-
+    // Two end point for instructor subclasses
     /*
     @PostMapping("/savePermanentInstructor")
     public PermanentInstructor savePermanentInstructor(@RequestBody PermanentInstructor permanentInstructor){

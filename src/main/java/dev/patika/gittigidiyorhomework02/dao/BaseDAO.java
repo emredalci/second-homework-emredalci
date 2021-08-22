@@ -7,7 +7,7 @@ import java.util.List;
 @Repository
 public interface BaseDAO<T>{
 
-    // Base data access object interface signatures
+    // Base data access object signatures
 
     List<T> findAll();
     T findById(int id);

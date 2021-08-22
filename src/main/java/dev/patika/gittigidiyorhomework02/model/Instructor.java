@@ -10,7 +10,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "instructors")
 @Inheritance(strategy = InheritanceType.JOINED)
+// We prevent infinite loop when we send get request
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+// This annotation is for instructor sub classes
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
